@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>停車場管理系統</title>
+</head>
+<body>
+    <h1>停車場管理系統</h1>
+    <p>剩餘車位：<strong th:text="${availableSlots}"></strong></p>
+    
+    <form action="/park" method="post">
+        <label for="licensePlate">車牌號：</label>
+        <input type="text" id="licensePlate" name="licensePlate">
+        <button type="submit">停車</button>
+    </form>
+    
+    <form action="/remove" method="post">
+        <label for="licensePlate">車牌號：</label>
+        <input type="text" id="licensePlate" name="licensePlate">
+        <button type="submit">取車</button>
+    </form>
+    
+    <p th:text="${message}"></p>
+</body>
+</html>
