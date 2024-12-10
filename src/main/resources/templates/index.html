@@ -1,24 +1,98 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-TW">
 <head>
+    <meta charset="UTF-8">
     <title>停車場管理系統</title>
 </head>
 <body>
-    <h1>停車場管理系統</h1>
-    <p>剩餘車位：<strong th:text="${availableSlots}"></strong></p>
-    
-    <form action="/park" method="post">
-        <label for="licensePlate">車牌號：</label>
-        <input type="text" id="licensePlate" name="licensePlate">
-        <button type="submit">停車</button>
-    </form>
-    
-    <form action="/remove" method="post">
-        <label for="licensePlate">車牌號：</label>
-        <input type="text" id="licensePlate" name="licensePlate">
-        <button type="submit">取車</button>
-    </form>
-    
-    <p th:text="${message}"></p>
+    <div class="container">
+        <h1>停車場管理系統</h1>
+        <p>剩餘車位：<strong th:text="${availableSlots}"></strong></p>
+
+        <form action="/park" method="post">
+            <label for="licensePlate">車牌號：</label>
+            <input type="text" id="licensePlate" name="licensePlate" required>
+            <button type="submit">停車</button>
+        </form>
+
+        <form action="/remove" method="post">
+            <button type="submit">取車</button>
+        </form>
+        <p id="message" th:if="${message}" th:text="${message}" class="message"></p>
+    </div>
+    <script>
+        //我加了讓他兩秒後消失，不歐虧的話可以刪掉
+        window.onload = function () {
+            const messageElement = document.getElementById("message");
+            if (messageElement) {
+                setTimeout(() => {
+                    messageElement.style.display = "none";
+                }, 2000); 
+            }
+        };
+    </script>
 </body>
 </html>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f9fc;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+    }
+    .container {
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px 40px;
+        max-width: 400px;
+        width: 100%;
+    }
+    h1 {
+        color: #005b9f;
+        margin-bottom: 20px;
+    }
+    input[type="text"], button {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    button {
+        background-color: #005b9f;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #004080;
+    }
+    .message {
+        padding: 15px;
+        background-color: #eaf7ff;
+        color: #005b9f;
+        border: 1px solid #b3e5fc;
+        border-radius: 8px;
+        margin-top: 15px;
+        display: inline-block;
+        font-size: 14px;
+        animation: fadeOut 0.5s ease-in-out 4.5s forwards; 
+    }
+    @keyframes fadeOut {
+        to {
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+</style>
