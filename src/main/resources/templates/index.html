@@ -10,6 +10,7 @@
         <h1>停車場管理系統</h1>
         <p>剩餘車位：<strong th:text="${availableSlots}"></strong></p>
 
+
         <form action="/park_and_remove" method="post">
             <div class="form-group">
                 <label for="licensePlate">車牌號：</label>
@@ -27,6 +28,7 @@
         <p id="message" th:text="${message}" class="message"></p>
     </div>
     <script>
+main
         window.onload = function () {
             const messageElement = document.getElementById("message");
             if (messageElement) {
@@ -39,6 +41,7 @@
 </body>
 </html>
 <style>
+
     @font-face {
             font-family: 'cwTeXYen';
             src: url('fonts/cwTeXYen.ttf') format('truetype');
@@ -55,6 +58,7 @@
         height: 100vh;
         text-align: center;
     }
+
 
     .container {
         background: #ffffff;
@@ -125,4 +129,3 @@
         }
     }
 </style>
-
