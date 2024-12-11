@@ -1,24 +1,128 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-TW">
 <head>
+    <meta charset="UTF-8">
     <title>停車場管理系統</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>停車場管理系統</h1>
-    <p>剩餘車位：<strong th:text="${availableSlots}"></strong></p>
-    
-    <form action="/park" method="post">
-        <label for="licensePlate">車牌號：</label>
-        <input type="text" id="licensePlate" name="licensePlate">
-        <button type="submit">停車</button>
-    </form>
-    
-    <form action="/remove" method="post">
-        <label for="licensePlate">車牌號：</label>
-        <input type="text" id="licensePlate" name="licensePlate">
-        <button type="submit">取車</button>
-    </form>
-    
-    <p th:text="${message}"></p>
+    <div class="container">
+        <h1>停車場管理系統</h1>
+        <p>剩餘車位：<strong th:text="${availableSlots}"></strong></p>
+
+        <form action="/park_and_remove" method="post">
+            <div class="form-group">
+                <label for="licensePlate">車牌號：</label>
+                <input type="text" id="licensePlate" name="licensePlate" required>
+            </div>
+            <button type="submit" name="action" value="park">停車</button>
+            <button type="submit" name="action" value="remove">取車</button>
+        </form>
+        <!--
+        <form action="/remove" method="post">
+            <label for="licensePlate">車牌號：</label>
+            <input type="text" id="licensePlate" name="licensePlate">
+        </form>
+        -->
+        <p id="message" th:text="${message}" class="message"></p>
+    </div>
+    <script>
+        window.onload = function () {
+            const messageElement = document.getElementById("message");
+            if (messageElement) {
+                setTimeout(() => {
+                    messageElement.style.display = "none";
+                }, 2000); 
+            }
+        };
+    </script>
 </body>
 </html>
+<style>
+    @font-face {
+            font-family: 'cwTeXYen';
+            src: url('fonts/cwTeXYen.ttf') format('truetype');
+        }
+    body {
+        font-family: 'Noto Sans TC', sans-serif; 
+        background-color: #f7f9fc;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+    }
+
+    .container {
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px 40px;
+        max-width: 400px;
+        width: 100%;
+        border: 2px solid #cdcefd; 
+    }
+
+    h1 {
+        color: #4c4dab;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        max-width: 300px; /* 限制寬度 */
+        padding: 10px;
+        margin-top: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        text-align: left; /* 左對齊文字 */
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 5px;
+        background-color: #4c4dab;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #67bdf3;
+    }
+
+    .message {
+        padding: 15px;
+        background-color: #eaf7ff;
+        color: #4c4dab;
+        border: 1px solid #b3e5fc;
+        border-radius: 8px;
+        margin-top: 15px;
+        display: inline-block;
+        font-size: 14px;
+        animation: fadeOut 0.5s ease-in-out 4.5s forwards; 
+    }
+
+    @keyframes fadeOut {
+        to {
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+</style>
+
