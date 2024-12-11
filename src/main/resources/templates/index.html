@@ -5,96 +5,7 @@
     <meta charset="UTF-8">
     <title>停車場管理系統</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        @font-face {
-            font-family: 'cwTeXYen';
-            src: url('fonts/cwTeXYen.ttf') format('truetype');
-        }
-
-        body {
-            font-family: 'Noto Sans TC', sans-serif;
-            background-color: #f7f9fc;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-        }
-
-        .container {
-            background: #ffffff;
-            border-radius: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px 40px;
-            max-width: 400px;
-            width: 100%;
-            border: 2px solid #cdcefd;
-        }
-
-        h1 {
-            color: #4c4dab;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            max-width: 300px;
-            /* 限制寬度 */
-            padding: 10px;
-            margin-top: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-            text-align: left;
-            /* 左對齊文字 */
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 5px;
-            background-color: #4c4dab;
-            color: #fff;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #67bdf3;
-        }
-
-        .message {
-            padding: 15px;
-            background-color: #eaf7ff;
-            color: #4c4dab;
-            border: 1px solid #b3e5fc;
-            border-radius: 8px;
-            margin-top: 15px;
-            display: inline-block;
-            font-size: 14px;
-            animation: fadeOut 0.5s ease-in-out 4.5s forwards;
-        }
-
-        @keyframes fadeOut {
-            to {
-                opacity: 0;
-                visibility: hidden;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body>
@@ -112,43 +23,8 @@
         </form>
 
         <p id="message" th:text="${message}" class="message"></p>
-
+        <script src="/js/script.js"></script>
     </div>
 </body>
-<script>
-    window.onload = function () {
-        const messageElement = document.getElementById("message");
-        if (messageElement) {
-            setTimeout(() => {
-                messageElement.style.display = "none";
-            }, 2000);
-        }
-    };
-
-    document.getElementById("parkButton").addEventListener("click", function () {
-        submitForm("/park");
-    });
-
-    document.getElementById("removeButton").addEventListener("click", function () {
-        submitForm("/remove");
-    });
-
-    function submitForm(action) {
-        const form = document.getElementById("parkingForm");
-        const formData = new FormData(form);
-        fetch(action, {
-            method: "POST",
-            body: formData
-        })
-            .then(response => response.text())
-            .then(html => {
-                document.open();
-                document.write(html);
-                document.close();
-            })
-            .catch(error => console.error("Error:", error));
-    }
-
-</script>
 
 </html>
