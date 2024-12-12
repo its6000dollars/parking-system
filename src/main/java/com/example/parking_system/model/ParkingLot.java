@@ -1,4 +1,4 @@
-package com.example.parking_system;
+package com.example.parking_system.model;
 
 import java.util.ArrayList;
 import java.util.List;

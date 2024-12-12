@@ -1,8 +1,12 @@
-package com.example.parking_system;
+package com.example.parking_system.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import java.util.Date;
 
+@Entity
 public class Car {
+    @Id
     private String licensePlate;
     private Date entryTime;
     private Date exitTime;
@@ -16,8 +20,16 @@ public class Car {
         return licensePlate;
     }
 
+    public void setLicensePlate(String licensePlate) {
+        this.licensePlate = licensePlate;
+    }
+
     public Date getEntryTime() {
         return entryTime;
+    }
+
+    public void setEntryTime(Date entryTime) {
+        this.entryTime = entryTime;
     }
 
     public Date getExitTime() {
