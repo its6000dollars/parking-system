@@ -11,6 +11,9 @@ public class Car {
     private Date entryTime;
     private Date exitTime;
 
+    public Car() {
+    }
+
     public Car(String licensePlate) {
         this.licensePlate = licensePlate;
         this.entryTime = new Date();
