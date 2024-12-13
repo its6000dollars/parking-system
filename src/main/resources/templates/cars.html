@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>已停放的車輛</title>
+</head>
+<body>
+    <h1>已停放的車輛</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>車牌號</th>
+                <th>進入時間</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="car : ${parkedCars}">
+                <td th:text="${car.licensePlate}"></td>
+                <td th:text="${car.entryTime}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/">返回</a>
+</body>
+</html>
