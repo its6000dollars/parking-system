@@ -3,12 +3,12 @@ package com.example.parking_system.model;
 import jakarta.persistence.Entity;
 
 @Entity
-public class Car extends Vehicle {
-    public Car() {
+public class Scooter extends Vehicle {
+    public Scooter() {
         super();
     }
 
-    public Car(String licensePlate) {
+    public Scooter(String licensePlate) {
         super(licensePlate);
     }
 }

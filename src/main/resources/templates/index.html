@@ -3,28 +3,107 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>停車場管理系統</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body>
-    <div class="container">
-        <h1>停車場管理系統</h1>
-        <p>剩餘車位：<strong th:text="${availableSlots}"></strong></p>
+    <div class="container parking">
+        <h1>模擬車輛進入</h1>
+        <div class="entry-container">
+            <!-- 機車表單 -->
+            <form id="scooterParkingForm">
+                <h2>機車剩餘車位：<strong th:text="${availableScooterSlots}"></strong></h2>
+                <div class="form-group">
+                    <input class="inputLicensePlate" type="text" id="scooterLicensePlate" name="licensePlate"
+                        placeholder="請輸入車牌..." required>
+                </div>
+                <button type="button" id="scooterParkButton">停車</button>
+                <p id="scooterMessage" th:text="${scooterMessage}" class="message"></p>
+            </form>
+            <!-- 汽車表單 -->
+            <form id="carParkingForm">
+                <h2>汽車剩餘車位：<strong th:text="${availableCarSlots}"></strong></h2>
+                <div class="form-group">
+                    <input class="inputLicensePlate" type="text" id="carLicensePlate" name="licensePlate"
+                        placeholder="請輸入車牌..." required>
+                </div>
+                <button type="button" id="carParkButton">停車</button>
+                <p id="carMessage" th:text="${carMessage}" class="message"></p>
+            </form>
+        </div>
+    </div>
 
-        <form id="parkingForm">
-            <div class="form-group">
-                <label for="licensePlate">車牌號：</label>
-                <input type="text" id="licensePlate" name="licensePlate" required>
+    <div class="container selection">
+        <!-- Vehicle Selection Section -->
+        <div id="vehicleSelection">
+            <h1>選擇車輛種類</h1>
+            <div class="vehicle-buttons">
+                <button id="scooter-btn" onclick="selectVehicle('scooter')" class="vehicle-btn">
+                    <img src="/asset/motorcycle.png" alt="機車圖示" loading="lazy"><br>
+                    <h2>機車</h2>
+                </button>
+                <button id="car-btn" onclick="selectVehicle('car')" class="vehicle-btn">
+                    <img src="/asset/car.png" alt="汽車圖示" loading="lazy"><br>
+                    <h2>汽車</h2>
+                </button>
             </div>
-            <button type="button" id="parkButton">停車</button>
-            <button type="button" id="removeButton">取車</button>
+        </div>
+
+        <!-- License Plate Input Form -->
+        <form id="licensePlateForm" class="hidden" onsubmit="handleSubmit(event)">
+            <h1>請輸入車牌</h1>
+            <input type="hidden" id="vehicleType" name="vehicleType">
+            <div class="form-group">
+                <input type="text" class="inputLicensePlate" id="licensePlate" name="licensePlate" placeholder="請輸入車牌號碼" required>
+            </div>
+            <div class="button-group">
+                <button type="submit" class="primary-btn">下一步</button>
+                <button type="button" onclick="backToVehicleSelection()" class="secondary-btn">返回</button>
+            </div>
         </form>
 
-        <p id="message" th:text="${message}" class="message"></p>
-        <script src="/js/script.js"></script>
+        <!-- Payment Result Section -->
+        <div id="result" class="hidden">
+            <h2>本次停車繳費資訊</h2>
+            <div class="info-container">
+                <div class="info-row">
+                    <label>繳費車牌</label>
+                    <span class="info-row-content" id="licensePlateResult"></span>
+                </div>
+                <div class="info-row">
+                    <label>進場時間</label>
+                    <span class="info-row-content" id="entryTimeResult"></span>
+                </div>
+                <div class="info-row">
+                    <label>結算時間</label>
+                    <span class="info-row-content" id="exitTimeResult"></span>
+                </div>
+                <div class="info-row">
+                    <label>停車時間</label>
+                    <span class="info-row-content" id="parkingTimeResult"></span>
+                </div>
+                <hr>
+                <div id="totalFee">
+                    <label>應繳金額</label>
+                    <span class="info-row-content" id="feeResult"></span>
+                </div>
+            </div>
+            <button onclick="payFee()" class="primary-btn">繳費</button>
+            <button onclick="backToVehicleSelection()" class="secondary-btn">取消繳費</button>
+        </div>
+
+        <!-- Payment Complate Section -->
+        <div id="complate" class="hidden">
+            <h2>繳費完成</h2>
+            <p>感謝您的使用，歡迎再次光臨！</p>
+        </div>
+
     </div>
+
+    <script src="/js/payment.js"></script>
+    <script src="/js/parking.js"></script>
 </body>
 
 </html>

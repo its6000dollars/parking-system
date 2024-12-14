@@ -1,6 +1,5 @@
-@font-face {
-    font-family: 'cwTeXYen';
-    src: url('fonts/cwTeXYen.ttf') format('truetype');
+.hidden {
+    display: none;
 }
 
 body {
@@ -14,75 +13,165 @@ body {
     align-items: center;
     height: 100vh;
     text-align: center;
+    gap: 50px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #4c4dab;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #3a3b8f;
+}
+
+.secondary-btn {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffffff00;
+    border: #4c4dab 2px solid;
+    color: #4c4dab;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .container {
     background: #ffffff;
     border-radius: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px 40px;
-    max-width: 400px;
+    padding: 20px;
+    max-width: 600px;
     width: 100%;
+    height: 500px;
     border: 2px solid #cdcefd;
 }
 
-h1 {
-    color: #4c4dab;
-    margin-bottom: 20px;
-}
-
-.form-group {
+.parking {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 15px;
 }
 
-input[type="text"] {
-    width: 100%;
-    max-width: 300px;
-    /* 限制寬度 */
+.selection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.entry-container {
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.message {
+    color: #4c4dab;
+}
+
+.inputLicensePlate {
+    width: 250px;
     padding: 10px;
-    margin-top: 10px;
+    margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
     text-align: left;
-    /* 左對齊文字 */
+    text-transform: uppercase;
 }
 
-button {
-    width: 100%;
+.LicensePlate {
+    width: 250px;
+    max-width: 200px;
     padding: 10px;
     margin: 10px 0;
-    border: none;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #4c4dab;
-    color: #fff;
     font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    text-align: left;
 }
 
-button:hover {
-    background-color: #67bdf3;
+#vehicleSelection div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 10px;
 }
 
-.message {
-    padding: 15px;
-    background-color: #eaf7ff;
-    color: #4c4dab;
-    border: 1px solid #b3e5fc;
-    border-radius: 8px;
+#vehicleSelection-button {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
     margin-top: 15px;
-    display: inline-block;
-    font-size: 14px;
-    animation: fadeOut 0.5s ease-in-out 4.5s forwards;
 }
 
-@keyframes fadeOut {
-    to {
-        opacity: 0;
-        visibility: hidden;
-    }
+#vehicleSelection button {
+    height: 300px;
+    width: 290px;
 }
+
+#vehicleSelection button img {
+    width: 150px;
+    height: 150px;
+    border-radius: 5px;
+}
+
+.info-container {
+    height: 250px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-bottom: 15px;
+}
+
+.info-container hr {
+    width: 100%;
+    margin: 10px 0;
+    border: 1px solid #cdcefd;
+}
+
+.info-row {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.info-container div {
+    width: 100%;
+}
+
+.info-row-content {
+    font-size: large;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+#totalFee {
+    display: flex;
+    justify-content: space-between;
+}
+
+#parkingTimeResult {
+    color: #3aaa3f;
+}
+
+#feeResult {
+    color: #ffa42e;
+}
+
