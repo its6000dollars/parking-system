@@ -1,6 +1,7 @@
 package com.example.parking_system.controller;
 
 import com.example.parking_system.model.Car;
+import com.example.parking_system.model.ParkingLot;
 import com.example.parking_system.model.Scooter;
 import com.example.parking_system.repository.CarRepository;
 import com.example.parking_system.repository.ScooterRepository;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -30,15 +30,9 @@ public class ParkingLotController {
     @Autowired
     private ScooterRepository scooterRepository;
 
-    private static final int TOTAL_SCOOTER_SLOTS = 20;
-    private static final int TOTAL_CAR_SLOTS = 10;
-
     @GetMapping("/")
     public String payment(Model model) {
-        long availableScooterSlots = TOTAL_SCOOTER_SLOTS - scooterRepository.count();
-        long availableCarSlots = TOTAL_CAR_SLOTS - carRepository.count();
-        model.addAttribute("availableScooterSlots", availableScooterSlots);
-        model.addAttribute("availableCarSlots", availableCarSlots);
+        updateAvailableSlots(model);
         model.addAttribute("result", null);
         return "index";
     }
@@ -168,8 +162,8 @@ public class ParkingLotController {
     }
 
     private void updateAvailableSlots(Model model) {
-        long availableScooterSlots = TOTAL_SCOOTER_SLOTS - scooterRepository.count();
-        long availableCarSlots = TOTAL_CAR_SLOTS - carRepository.count();
+        long availableScooterSlots = ParkingLot.getTotalScooterSlots() - scooterRepository.count();
+        long availableCarSlots = ParkingLot.getTotalCarSlots() - carRepository.count();
         model.addAttribute("availableScooterSlots", availableScooterSlots);
         model.addAttribute("availableCarSlots", availableCarSlots);
     }
