@@ -3,29 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>parkiongLotList</title>
+    <title>停車場列表</title>
+    <link rel="stylesheet" href="/css/parkingLotList.css">
 </head>
 <body>
     <div class="container parking">
         <h1>停車場列表</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>停車場名稱</th>
-                    <th>汽車剩餘車位</th>
-                    <th>機車剩餘車位</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="parkingLot : ${scooterList}">
-                    
-                </tr>
-            </tbody>
-        </table>
-        <table>
 
-        </table>
+        <div class="list-container">
+            <!-- 機車列表 -->
+            <div class="table-container">
+                <h2>SCOOTER</h2>
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>License Plate</th>
+                            <th>Entry Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="scooter : ${scooterList}">
+                            <td th:text="${scooter.licensePlate}">車牌號碼</td>
+                            <td th:text="${#dates.format(scooter.entryTime, 'yyyy-MM-dd HH:mm:ss')}">進場時間</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 汽車列表 -->
+            <div class="table-container">
+                <h2>CAR</h2>
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>License Plate</th>
+                            <th>Entry Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="car : ${carList}">
+                            <td th:text="${car.licensePlate}">車牌號碼</td>
+                            <td th:text="${#dates.format(car.entryTime, 'yyyy-MM-dd HH:mm:ss')}">進場時間</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    
 </body>
 </html>

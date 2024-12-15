@@ -1,0 +1,114 @@
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background-color: #f7f9fc;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    gap: 50px;
+    overflow: hidden; /* 防止全局捲動 */
+}
+
+h2 {
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 800px;
+    height: 550px;
+    border: 2px solid #cdcefd;
+    overflow: hidden; /* 防止內部溢出 */
+}
+
+.container.parking {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1000px;
+    padding: 20px;
+}
+
+.list-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    gap: 20px;
+    max-height: 400px;
+    overflow: hidden; /* 防止外部滾動 */
+}
+
+.table-container {
+    width: 100%;
+    max-height: 400px;
+    position: relative;
+    overflow: hidden;
+}
+
+.styled-table {
+    width: 100%;
+    font-size: 18px;
+    border-collapse: collapse;
+    text-align: left;
+    border: 2px solid #cdcefd;
+    table-layout: fixed; /* 確保列寬固定 */
+    box-sizing: border-box; /* 確保邊框計入寬度 */
+}
+
+.styled-table thead {
+    position: sticky;
+    top: 0;
+    background-color: #4c4dab;
+    color: #ffffff;
+    z-index: 1;
+    scrollbar-gutter: stable; /* 確保滾動條不改變佈局 */
+}
+
+.styled-table thead tr {
+    display: table;
+    width: 100%; /* 確保thead寬度固定 */
+    table-layout: fixed;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    border: 1px solid #dddddd;
+    overflow: hidden; /* 防止內容溢出 */
+    text-overflow: ellipsis;
+    white-space: nowrap; /* 避免文字換行 */
+}
+
+.styled-table tbody {
+    display: block;
+    max-height: 300px; /* 設置tbody的最大高度 */
+    overflow-y: auto; /* 垂直滾動 */
+    width: calc(100% - 1px); /* 確保寬度與thead一致，並修正滾動條寬度影響 */
+    scrollbar-gutter: stable; /* 確保滾動條不影響內容對齊 */
+}
+
+.styled-table tbody tr {
+    display: table;
+    width: 100%; /* 確保行寬與表頭一致 */
+    table-layout: fixed;
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #4c4dab;
+}

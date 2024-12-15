@@ -1,3 +1,13 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const message = document.getElementsByClassName('message');
+
+    if (message.length > 0) {
+        setTimeout(function () {
+            message[0].style.display = 'none';
+        }, 4000);
+    }
+});
+
 document.getElementById("scooterParkButton").addEventListener("click", function () {
     submitForm("/scooter");
 });
