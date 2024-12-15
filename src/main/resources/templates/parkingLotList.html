@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>parkiongLotList</title>
+</head>
+<body>
+    <div class="container parking">
+        <h1>停車場列表</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>停車場名稱</th>
+                    <th>汽車剩餘車位</th>
+                    <th>機車剩餘車位</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="parkingLot : ${scooterList}">
+                    
+                </tr>
+            </tbody>
+        </table>
+        <table>
+
+        </table>
+    </div>
+    
+</body>
+</html>

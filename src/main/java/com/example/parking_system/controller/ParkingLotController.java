@@ -161,6 +161,13 @@ public class ParkingLotController {
         return ResponseEntity.ok(Map.of("message", "繳費成功"));
     }
 
+    @GetMapping("/parkingLotList")
+    public String parkingLotList(Model model) {
+        model.addAttribute("scooterList", scooterRepository.findAll());
+        model.addAttribute("carList", carRepository.findAll());
+        return "parkingLotList";
+    }
+
     private void updateAvailableSlots(Model model) {
         long availableScooterSlots = ParkingLot.getTotalScooterSlots() - scooterRepository.count();
         long availableCarSlots = ParkingLot.getTotalCarSlots() - carRepository.count();
