@@ -44,12 +44,18 @@ public class ParkingLotController {
             updateAvailableSlots(model);
             return "index";
         }
+        
         Scooter scooter = new Scooter(licensePlate);
         if (scooterRepository.existsById(licensePlate)) {
             model.addAttribute("scooterMessage", "車輛 " + licensePlate + " 已經停入車位");
         } else {
-            scooterRepository.save(scooter);
-            model.addAttribute("scooterMessage", "車輛 " + licensePlate + " 已停入車位");
+            long availableScooterSlots = ParkingLot.getTotalScooterSlots() - scooterRepository.count();
+            if (availableScooterSlots > 0) {
+                scooterRepository.save(scooter);
+                model.addAttribute("scooterMessage", "車輛 " + licensePlate + " 已停入車位");
+            }else {
+                model.addAttribute("scooterMessage", "機車車位已滿！");
+            }
         }
         updateAvailableSlots(model);
         return "index";
@@ -62,12 +68,18 @@ public class ParkingLotController {
             updateAvailableSlots(model);
             return "index";
         }
+
         Car car = new Car(licensePlate);
         if (carRepository.existsById(licensePlate)) {
             model.addAttribute("carMessage", "車輛 " + licensePlate + " 已經停入車位");
         } else {
-            carRepository.save(car);
-            model.addAttribute("carMessage", "車輛 " + licensePlate + " 已停入車位");
+            long availableCarSlots = ParkingLot.getTotalCarSlots() - carRepository.count();
+            if (availableCarSlots > 0) {
+                carRepository.save(car);
+                model.addAttribute("carMessage", "車輛 " + licensePlate + " 已停入車位");
+            }else {
+                model.addAttribute("carMessage", "汽車車位已滿！");
+            }
         }
         updateAvailableSlots(model);
         return "index";
